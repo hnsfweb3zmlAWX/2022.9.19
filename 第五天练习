@@ -1,0 +1,245 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+
+#include<stdio.h>
+
+int main()
+{
+	//对一百以内的数字进行奇偶判断并输出：
+	int a = 1;
+	while (100 >= a)
+	{
+		if (0 != a % 2)
+		{
+			printf(" %d ", a);
+		}
+		a++;
+	}
+	//判断并输出100以内所有奇数后换行：
+	printf("\n");
+
+	//分支语句：
+	//switch语句也是(else if)一种多分支语句，常用于多分支的情况：
+	int day1 = 0;
+	printf("Please enter the bed number ：");
+	scanf("%d", &day1);
+	//switch语句格式：switch(整形表达式){语句项}
+	switch (day1)
+	{
+	//语句项格式：case 整形常量表达式{(操作语句)；break;}
+	//break语句意为"结束"，作用为跳出switch语句项
+	case 1:
+	{
+		printf("年龄为：20\n");
+		break;
+	}
+	case 2:
+	{
+		printf("年龄为：20\n");
+		break;
+	}
+	case 3:
+	{
+		printf("年龄为：20\n");
+		break;
+	}
+	case 4:
+	{
+		printf("年龄为：20\n");
+		break;
+	}
+	case 5:
+	{
+		printf("年龄为：20\n");
+		break;
+	}
+	case 6:
+	{
+		printf("年龄为：19\n");
+		break;
+	}
+	case 7:
+	{
+		printf("年龄为：19\n");
+		break;
+	}
+	//defult：若所有分支均未达成执行条件，即未执行，则执行defult默认语句
+	default:
+	{
+		printf("The bed number entered is wrong ！\n");
+		break;
+	}
+	}
+
+	//通过结合使用switch语句和break语句，可将上述代码简化为：
+	int day2 = 0;
+	printf("Please enter the bed number ：");
+	scanf("%d", &day2);
+	switch (day2)
+	{
+	case 1:
+	case 2:
+	case 3:
+	case 4:
+	case 5:
+	{
+		printf("年龄为：20\n");
+		break;
+	}
+	case 6:
+	case 7:
+	{
+		printf("年龄为：19\n");
+		break;
+	}
+	//defult：若所有分支均未达成执行条件，即均未执行，则执行defult子句
+	//每个switch语句只能出现一条break子句，但是他可以出现在语句列表的任何位置，而且语句流会像贯穿一个case标签一样贯穿default子句
+	//最好在每个switch语句中都放一个break子句，甚至可以在default子句后再加一个break
+    default:
+	    {
+		printf("The bed number entered is wrong ！\n");
+		break;
+	    }
+	}
+	//原理：case1-4未使用break语句，遂不跳出，因此无论从1-4哪个位置进入，都将持续执行直至从case5语句的break语句跳出(case6、7同理)
+
+	//另：switch语句允许嵌套使用：
+	int b = 1;
+	int c = 0;
+	switch(b)
+	{
+	case 1:
+	{
+		c++;
+	}
+	case 2:
+	{
+		b++;
+	}
+	case 3:
+	{
+		switch (b)
+		{
+		case 1:
+		{
+			c++;
+		}
+		case 2:
+		{
+			b++;
+			c++;
+			break;
+		}
+		}
+	}
+	case 4:
+	{
+		c++;
+	}
+	default:
+	{
+		break;
+	}
+	}
+	printf("b = %d , c = %d \n", b, c);
+
+	//循环语句：
+	
+	//if语句格式：if(条件){语句;}/else{语句;}
+	//if语句括号中的条件实质为判断真假，为真则执行if语句，否则执行else语句
+
+	//while语句格式：while(表达式){语句;}
+	//(例)打印从一到十的所有数字：
+	printf("From one to ten ：\n");
+	int d = 1;
+	while (10 >= d)
+	{
+		printf(" %d \n", d);
+		d++;
+	}
+
+	//break语句可以在while语句中使用(跳出循环)：
+	printf("From one to ten (Jump out at 5) ：\n");
+	int e = 1;
+	while (10 >= e)
+	{
+		if (5 == e)
+		//当e=5时跳出循环
+		//用于实现当达到某种条件时跳出当前循环的操作
+		{
+			break;
+			//跳出当前局部变量
+		}
+		printf(" %d \n", e);
+		e++;
+	}
+//
+	//continue语句在while语句中的意义和使用(结束本次循环)：
+	//达到条件结束本次循环：
+	printf("From one to ten (The loop ends when it equals 5) ：\n");
+	int f = 1;
+	int g = 0;
+	while (10 >= f)
+	{
+		if (10 >= g)
+		{
+			if (5 == f)
+				//当e=5时结束本次循环
+			{
+				g++;
+				continue;
+				//结束本次循环，开始下次循环(跳过本次循环中continue后所有语句)
+				//此处设置g++目的为达到一定判定次数停止循环，用于防止continue形成死循环导致后面的部分无法正常执行
+			}
+			printf(" %d \n", f);
+			f++;
+			g++;
+		}
+		else
+		{
+			printf(" %d \n", f);
+			f++;
+			printf("The decision was made %d times .\n", g);
+			printf("（ Loop ten times and jump out .）\n");
+			break;
+		}
+	}
+
+	//跳过达到条件的该次循环：
+	printf("From one to ten (If it is equal 5 ,the loop is skipped) ：\n");
+	int h = 1;
+	while (10 >= h)
+	{
+		if (5 == h)
+			//当e=5时结束本次循环
+		{
+			h++;
+			//将增值操作置于continue语句之前，无论是否判定该次循环跳过，均进行增值操作，避免发生死循环，从而实现跳过达到某种条件的循环的操作
+			continue;
+			//结束本次循环，开始下次循环(跳过本次循环中continue后所有语句)
+		}
+		else
+		{
+			printf(" %d \n", h);
+			h++;
+		}
+	}
+
+//switch语句可以实现语句的循环，通过配合使用break语句和continue语句可以实现'达成条件跳出循环'或'达成条件结束当次循环'或'达成条件跳过当次循环'等操作
+//break语句的含义为'跳出循环'，表示当达到提前设置好的条件时，停止并跳出循环，循环不再执行
+//continue语句的含义为'结束当前循环'，表示当达到提前设置好的条件时，结束本次循环，在本次循环中位于continue语句后的所有语句均被跳过，执行下一次循环
+
+	int i = 0;
+	while ((i = getchar()) != EOF)
+	//getchar函数的作用为从键盘获取输入信息
+	//若直接从键盘输入EOF，则会识别为分三次输入了E、O、F三个字母，导致无法完成判断条件
+	//EOF的正确输入方式应当为：ctrl+z
+	{
+		printf("Putchar输出：");
+		putchar(i);
+		//putchar函数的作用为打印键盘输入信息
+		printf("Printf输出：");
+		printf("%c\n", i);
+	}
+
+	return 0;
+}
